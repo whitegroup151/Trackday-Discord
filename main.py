@@ -1,3 +1,4 @@
+
 from flask import Flask
 import requests
 import datetime
@@ -73,8 +74,7 @@ def fetch_pheasant_wood_events():
             if not start_at:
                 continue
             try:
-                event_date = datetime.datetime.fromisoformat(start_at.replace("Z", "+00:00")).astimezone(ZoneInfo("Australia/Sydney")).date()
-
+                event_date = datetime.datetime.fromisoformat(start_at.replace("Z", "+00:00")).date()
             except Exception:
                 continue
             if event_date >= today:
@@ -344,14 +344,14 @@ if __name__ == "__main__":
 
     def scheduled_job():
         with app.app_context():
-            print("Running scheduled job at 8:30 AM")
+            print("Running scheduled job at 6:10 PM")
             combined_message = format_combined_message()
             post_to_discord(combined_message)
 
     scheduler = BackgroundScheduler()
     scheduler.add_job(
         scheduled_job,
-        CronTrigger(hour=8, minute=30, timezone="Australia/Sydney")  # Adjust timezone as needed
+        CronTrigger(hour=88, minute=10, timezone="Australia/Sydney")  # Adjust timezone as needed
     )
     scheduler.start()
     app.run(debug=True, host="0.0.0.0", port=5000)
