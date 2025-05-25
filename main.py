@@ -344,14 +344,14 @@ if __name__ == "__main__":
 
     def scheduled_job():
         with app.app_context():
-            print("Running scheduled job at 6:10 PM")
+            print("Running scheduled job at 6:20 PM")
             combined_message = format_combined_message()
             post_to_discord(combined_message)
 
     scheduler = BackgroundScheduler()
     scheduler.add_job(
         scheduled_job,
-        CronTrigger(hour=88, minute=10, timezone="Australia/Sydney")  # Adjust timezone as needed
+        CronTrigger(hour=18, minute=20, timezone="Australia/Sydney")  # Adjust timezone as needed
     )
     scheduler.start()
     app.run(debug=True, host="0.0.0.0", port=5000)
